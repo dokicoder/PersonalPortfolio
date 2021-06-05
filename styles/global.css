@@ -1,3 +1,9 @@
+
+:root {
+  --primary-color: rgb(0, 134, 211);
+  --text-color: rgb(29, 39, 53);
+}
+
 html,
 body {
   padding: 0;
@@ -5,7 +11,17 @@ body {
   font-family: Montserrat Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+body {
+  /*
+  background: rgb(63,255,79);
+  background: linear-gradient(160deg, rgba(63,255,79,1) 0%, rgba(66,123,241,1) 100%);
+  background-repeat: no-repeat;
+  */
+  min-height: 100vh;
 }
 
 * {
@@ -13,7 +29,7 @@ body {
 }
 
 a {
-  color: #0070f3;
+  color: var(--primary-color);
   text-decoration: none;
 }
 

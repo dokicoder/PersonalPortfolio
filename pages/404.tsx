@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 
 // pages/404.js
 const Page404: React.FC = function () {
