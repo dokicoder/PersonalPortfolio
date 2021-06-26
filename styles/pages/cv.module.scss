@@ -6,7 +6,6 @@
     flex-direction: row;
 
     width: 100%;
-    height: 600px;
     align-items: stretch;
 
     box-shadow: 0 0.5rem 2rem -0.8rem #00005080;
@@ -19,10 +18,10 @@
     margin: var(--cv-margin);
     padding-right:  var(--cv-margin);
     border-right: 1px dashed #00005030;
-}
 
-.cvInfoBar > img {
-    flex-shrink: 1;
+    > img {
+        flex-shrink: 1;
+    }
 }
 
 .cvContentContainer {
@@ -32,14 +31,14 @@
 }
 
 .divider {
-    box-shadow: 0 0.8rem 1rem -0.8rem #dbdbec80;
+    box-shadow: 0 0.8rem 1rem -0.8rem #00005060;
     padding-left: 0.7rem;
     margin: 2rem  -0.7rem 2rem -0.7rem;
 }
 
 .icon {
-    width: 2.0rem;
-    height: 2.0rem;
+    width: 2.2rem;
+    height: 2.2rem;
     background-color: var(--text-color);
     border-radius: 50%;
     display: flex;
@@ -49,13 +48,13 @@
 }
 
 .icon > svg {
-    width: 70%;
-    height: 70%;
-}
+    width: 50%;
+    height: 50%;
 
-.icon > svg path {  
-    stroke: white;
-    fill: white;
+    path {  
+        stroke: white;
+        fill: white;
+    }
 }
 
 .personalDatum {
@@ -64,4 +63,37 @@
     justify-content: space-between;
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;
+}
+
+.languageSkillsGerman {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.languageSkillsGerman > svg {
+    height: 1.8rem;
+}
+
+.languageSkillsGerman > svg:last-child {
+    margin-left: 0.28rem;
+}
+
+.languageSkillsEnglish {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+
+.languageSkillsEnglish > svg {
+    height: 1.8rem;
+}
+
+.languageSkillsEnglish > svg:first-child {
+    transform: scaleX(0.9);
+}
+
+.languageSkillsEnglish > svg:last-child {
+    transform: scaleX(0.8);
 }

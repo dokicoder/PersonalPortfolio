@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from './layout.module.css';
+import styles from './layout.module.scss';
 import { metaTitle, metaDescription } from '../content-config';
 import Header from './Header';
 import Link from 'next/link';

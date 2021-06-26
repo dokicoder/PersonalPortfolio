@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './header.module.css';
-import utilStyles from '../styles/utils.module.css';
+import styles from './header.module.scss';
+import utilStyles from '../styles/utils.module.scss';
 
 import { name } from '../content-config';
 
