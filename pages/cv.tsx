@@ -24,7 +24,7 @@ const CurriculumVitae: React.FC = function () {
       <h1>{contentConfig.cvPageTitle}</h1>
       <div className={styles.cvContainer}>
         <div className={styles.cvInfoBar}>
-          <img src="/images/profile.jpg" className={utilStyles.borderCircle} alt={name} />
+          <img src="/images/profile2.png" className={utilStyles.borderCircle} alt={name} />
           <h3 className={styles.divider}>Contact</h3>
           <a href={contentConfig.phoneUrl} className={styles.personalDatum}>
             <div className={styles.icon}>

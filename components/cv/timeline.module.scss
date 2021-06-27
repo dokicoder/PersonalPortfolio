@@ -1,34 +1,51 @@
-$track-line-thickness: 0.3rem;
-$trackIcon-size: 3.5rem;
-$trackIcon-fontsize: 2rem;
+$track-line-thickness: 0.2rem;
+$trackIcon-size: 2.7rem;
 $text-color: rgb(29, 39, 53);
 $track-color: rgba($text-color, 0.7);
-$track-width: max(12%,  #{$trackIcon-size});
+$track-width: max(8%,  #{$trackIcon-size});
+
+$trackColor_education: hsl(42, 100%, 65%);
+$trackColor_work: hsl(120, 46%, 27%);
 
 $row-gap: 2rem;
-$col-gap: 1rem;
+$col-gap: 0.3rem;
+
+//$trackOffset_education: calc(0.5 * #{$track-width});
+//$trackOffset_work: calc(1.5 * #{$track-width} + #{$col-gap});
+
+$trackOffset_education: calc(50% - 0.5 * #{$track-width} - 0.5 * #{$col-gap});
+$trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
 
 .timeline {
   display: grid;
   position: relative;
-  grid-template-columns: $track-width $track-width 1fr;
+  grid-template-columns: [education-text] 1fr [education-track] $track-width [work-track] $track-width [work-text] 1fr;
   row-gap: $row-gap;
   column-gap: $col-gap;
 
+  line-height: 1.4;
+
   h1, h2, h3 {
     margin: 0;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.0rem;
   }
 
   //background-color: rgba(blue, 0.1);
   align-self: stretch;
 }
 
-.textColumn {
-  grid-column: 3;
+.text_education {
+  grid-column: education-text;
+  text-align: right;
 }
 
+.text_work {
+  grid-column: work-text;
+}
+
+
 .track {
+  z-index: -1;
   position: absolute;
   top: $trackIcon-size + 0.3rem;
   bottom: 0;
@@ -37,17 +54,17 @@ $col-gap: 1rem;
 
 .track_education {
   composes: track;
-  left: calc(0.5 * #{$track-width} - 0.5 * #{$track-line-thickness});
+  left: $trackOffset_education;
+  transform: translateX(-50%);
 }
 
 .track_work {
   composes: track;
-  left: calc(1.5 * #{$track-width} - 0.5 * #{$track-line-thickness} + #{$col-gap});
+  left: $trackOffset_work;
+  transform: translateX(-50%);
 }
 
 .trackIcon {
-  z-index: 4;
-  font-size: $trackIcon-fontsize;
   justify-self: center;
   align-self: center;
   width: $trackIcon-size;
@@ -63,12 +80,122 @@ $col-gap: 1rem;
 
 .trackIcon_education {
   composes: trackIcon;
-  background-color: hsl(39, 70%, 50%);
+  background-color: $trackColor_education;
+  grid-column: education-track;
+
+  font-size: 0.57 * $trackIcon-size;
 }
 
 .trackIcon_work  {
   composes: trackIcon;
-  background-color: hsl(120, 70%, 25%);
+  background-color: $trackColor_work;
+  grid-column: work-track;
  
-  font-size: 0.8 * $trackIcon-fontsize;
+  font-size: 0.8 *  0.57 * $trackIcon-size;
+}
+
+.trackBase {
+  justify-self: center;
+  width: 0.3rem;
+  align-self: stretch;
+  
+  position: relative;
+}
+
+.trackSegment {
+  composes: trackBase;
+  background-color: $trackColor_education;
+  margin-top: -0.55 * $row-gap;
+  margin-bottom: -0.55 * $row-gap;
+}
+
+.trackSegment_education {
+  composes: trackSegment;
+  background-color: $trackColor_education;
+  grid-column: education-track;
+}
+
+.trackSegment_work {
+  composes: trackSegment;
+  background-color: $trackColor_work;
+  grid-column: work-track;
+}
+
+
+.trackEnd {
+  composes: trackBase;
+  transform: translateY(50%);
+
+  &:after {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    justify-self: center;
+    display: inline-block;
+    content: "X";
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.trackEnd_education {
+  composes: trackEnd;
+  background-color: $trackColor_education;
+  grid-column: education-track;
+
+  &:after {
+    background-color: $trackColor_education;
+  }
+}
+
+.trackEnd_work {
+  composes: trackEnd;
+  background-color: $trackColor_work;
+  grid-column: work-track;
+
+  &:after {
+    background-color: $trackColor_work;
+  }
+}
+
+.trackStart {
+  composes: trackBase;
+  transform: translateY(-50%);
+
+  &:after {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    justify-self: center;
+    display: inline-block;
+    content: "X";
+    color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+}
+
+.trackStart_education {
+  composes: trackStart;
+  background-color: $trackColor_education;
+  grid-column: education-track;
+
+  &:after {
+    background-color: $trackColor_education;
+  }
+}
+
+.trackStart_work {
+  composes: trackStart;
+  background-color: $trackColor_work;
+  grid-column: work-track;
+
+  &:after {
+    background-color: $trackColor_work;
+  }
 }

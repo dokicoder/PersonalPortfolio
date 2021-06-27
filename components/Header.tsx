@@ -17,7 +17,7 @@ const Header: React.FC<IProps> = ({ home }) => {
         <>
           <Image
             priority
-            src="/images/profile.jpg"
+            src="/images/profile2.png"
             className={utilStyles.borderCircle}
             height={144}
             width={144}
@@ -31,7 +31,7 @@ const Header: React.FC<IProps> = ({ home }) => {
             <a rel="noopener noreferrer">
               <Image
                 priority
-                src="/images/profile.jpg"
+                src="/images/profile2.png"
                 className={utilStyles.borderCircle}
                 height={108}
                 width={108}
