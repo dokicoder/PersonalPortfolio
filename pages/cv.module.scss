@@ -26,8 +26,12 @@
 
 .cvContentContainer {
     padding: var(--cv-margin);
+    padding-left: 0;
     align-self: stretch;
+    flex-grow: 1;
     /*background-color: #22448888;*/
+    
+    align-items: stretch;
 }
 
 .divider {

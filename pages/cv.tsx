@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import * as contentConfig from '../content-config';
 import { name } from '../content-config';
 import utilStyles from '../styles/utils.module.scss';
-import styles from '../styles/pages/cv.module.scss';
+import styles from './cv.module.scss';
 import Phone from '../public/icons/call.svg';
 import Mail from '../public/icons/mail.svg';
 import Home from '../public/icons/location.svg';
@@ -12,6 +12,7 @@ import CHflag from '../public/icons/ch.svg';
 import DEflag from '../public/icons/de.svg';
 import UKflag from '../public/icons/gb.svg';
 import USflag from '../public/icons/us.svg';
+import Timeline from './../components/cv/timeline';
 
 // pages/404.js
 const CurriculumVitae: React.FC = function () {
@@ -57,7 +58,9 @@ const CurriculumVitae: React.FC = function () {
           fluent
           <h4 className={styles.divider}>It / Software</h4>
         </div>
-        <div className={styles.cvContentContainer}>🎓</div>
+        <div className={styles.cvContentContainer}>
+          <Timeline />
+        </div>
       </div>
     </Layout>
   );

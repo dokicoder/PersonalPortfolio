@@ -1,0 +1,74 @@
+$track-line-thickness: 0.3rem;
+$trackIcon-size: 3.5rem;
+$trackIcon-fontsize: 2rem;
+$text-color: rgb(29, 39, 53);
+$track-color: rgba($text-color, 0.7);
+$track-width: max(12%,  #{$trackIcon-size});
+
+$row-gap: 2rem;
+$col-gap: 1rem;
+
+.timeline {
+  display: grid;
+  position: relative;
+  grid-template-columns: $track-width $track-width 1fr;
+  row-gap: $row-gap;
+  column-gap: $col-gap;
+
+  h1, h2, h3 {
+    margin: 0;
+    margin-bottom: 0.4rem;
+  }
+
+  //background-color: rgba(blue, 0.1);
+  align-self: stretch;
+}
+
+.textColumn {
+  grid-column: 3;
+}
+
+.track {
+  position: absolute;
+  top: $trackIcon-size + 0.3rem;
+  bottom: 0;
+  border-left: $track-line-thickness dotted $track-color;
+}
+
+.track_education {
+  composes: track;
+  left: calc(0.5 * #{$track-width} - 0.5 * #{$track-line-thickness});
+}
+
+.track_work {
+  composes: track;
+  left: calc(1.5 * #{$track-width} - 0.5 * #{$track-line-thickness} + #{$col-gap});
+}
+
+.trackIcon {
+  z-index: 4;
+  font-size: $trackIcon-fontsize;
+  justify-self: center;
+  align-self: center;
+  width: $trackIcon-size;
+  height: $trackIcon-size;
+  border-radius: 50%;
+  user-select: none;
+
+  display: flex;
+  > span {
+    margin: auto;
+  }
+}  
+
+.trackIcon_education {
+  composes: trackIcon;
+  background-color: hsl(39, 70%, 50%);
+}
+
+.trackIcon_work  {
+  composes: trackIcon;
+  background-color: hsl(120, 70%, 25%);
+ 
+  font-size: 0.8 * $trackIcon-fontsize;
+}
