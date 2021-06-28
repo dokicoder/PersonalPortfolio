@@ -20,8 +20,11 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
   display: grid;
   position: relative;
   grid-template-columns: [education-text] 1fr [education-track] $track-width [work-track] $track-width [work-text] 1fr;
+  grid-template-rows: $trackIcon-size 1fr;
   row-gap: $row-gap;
   column-gap: $col-gap;
+
+  height: 40rem;
 
   line-height: 1.4;
 
@@ -35,11 +38,19 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
 }
 
 .text_education {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(50%);
+
   grid-column: education-text;
   text-align: right;
 }
 
 .text_work {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(50%);
+
   grid-column: work-text;
 }
 
@@ -47,7 +58,7 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
 .track {
   z-index: -1;
   position: absolute;
-  top: $trackIcon-size + 0.3rem;
+  top: $trackIcon-size + 1.0rem;
   bottom: 0;
   border-left: $track-line-thickness dotted $track-color;
 }
@@ -95,36 +106,17 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
 }
 
 .trackBase {
+  position: absolute;
+  transform: translateY(100%);
+
   justify-self: center;
   width: 0.3rem;
   align-self: stretch;
-  
-  position: relative;
 }
 
 .trackSegment {
   composes: trackBase;
   background-color: $trackColor_education;
-  margin-top: -0.55 * $row-gap;
-  margin-bottom: -0.55 * $row-gap;
-}
-
-.trackSegment_education {
-  composes: trackSegment;
-  background-color: $trackColor_education;
-  grid-column: education-track;
-}
-
-.trackSegment_work {
-  composes: trackSegment;
-  background-color: $trackColor_work;
-  grid-column: work-track;
-}
-
-
-.trackEnd {
-  composes: trackBase;
-  transform: translateY(50%);
 
   &:after {
     width: 0.8rem;
@@ -141,8 +133,8 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
   }
 }
 
-.trackEnd_education {
-  composes: trackEnd;
+.trackSegment_education {
+  composes: trackSegment;
   background-color: $trackColor_education;
   grid-column: education-track;
 
@@ -151,47 +143,8 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
   }
 }
 
-.trackEnd_work {
-  composes: trackEnd;
-  background-color: $trackColor_work;
-  grid-column: work-track;
-
-  &:after {
-    background-color: $trackColor_work;
-  }
-}
-
-.trackStart {
-  composes: trackBase;
-  transform: translateY(-50%);
-
-  &:after {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    justify-self: center;
-    display: inline-block;
-    content: "X";
-    color: transparent;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-  }
-}
-
-.trackStart_education {
-  composes: trackStart;
-  background-color: $trackColor_education;
-  grid-column: education-track;
-
-  &:after {
-    background-color: $trackColor_education;
-  }
-}
-
-.trackStart_work {
-  composes: trackStart;
+.trackSegment_work {
+  composes: trackSegment;
   background-color: $trackColor_work;
   grid-column: work-track;
 

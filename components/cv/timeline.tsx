@@ -2,33 +2,41 @@ import React from 'react';
 import styles from './timeline.module.scss';
 
 interface IEntryProps {
+  time: number;
+  fromEducation?: number;
+  fromWork?: number;
   type: 'education' | 'work';
-  trackTypeEducation: 'start' | 'end' | 'segment' | 'none';
-  trackTypeWork: 'start' | 'end' | 'segment' | 'none';
   textContent: React.ReactNode;
 }
 
-const educationTrackMap = {
-  start: styles.trackStart_education,
-  end: styles.trackEnd_education,
-  segment: styles.trackSegment_education,
-  none: null,
-};
+const TimelineEntry: React.FC<IEntryProps> = ({ time, type, fromEducation, fromWork, textContent }) => {
+  const offset = `${time * 91}%`;
+  const segmentHeight = delta => `${delta * 91}%`;
 
-const workTrackMap = {
-  start: styles.trackStart_work,
-  end: styles.trackEnd_work,
-  segment: styles.trackSegment_work,
-  none: null,
-};
-
-const TimelineEntry: React.FC<IEntryProps> = ({ type, trackTypeEducation, trackTypeWork, textContent }) => {
   return (
     <>
-      {type === 'education' ? <div className={styles.text_education}>{textContent}</div> : <div />}
-      <div className={educationTrackMap[trackTypeEducation]} />
-      <div className={workTrackMap[trackTypeWork]} />
-      {type === 'work' ? <div className={styles.text_work}>{textContent}</div> : <div />}
+      {type === 'education' ? (
+        <div style={{ bottom: offset }} className={styles.text_education}>
+          {textContent}
+        </div>
+      ) : (
+        <div />
+      )}
+      <div
+        style={{ bottom: offset, height: fromEducation != undefined ? segmentHeight(time - fromEducation) : undefined }}
+        className={styles.trackSegment_education}
+      />
+      <div
+        style={{ bottom: offset, height: fromWork != undefined ? segmentHeight(time - fromWork) : undefined }}
+        className={styles.trackSegment_work}
+      />
+      {type === 'work' ? (
+        <div style={{ bottom: offset }} className={styles.text_work}>
+          {textContent}
+        </div>
+      ) : (
+        <div />
+      )}
     </>
   );
 };
@@ -45,9 +53,9 @@ const Timeline: React.FC = function () {
         <span>💼</span>
       </div>
       <TimelineEntry
+        time={1.0}
         type="work"
-        trackTypeEducation="none"
-        trackTypeWork="end"
+        fromWork={0.3}
         textContent={
           <>
             <h2>ti&m AG</h2>
@@ -56,9 +64,9 @@ const Timeline: React.FC = function () {
         }
       />
       <TimelineEntry
+        time={0.5}
         type="education"
-        trackTypeEducation="end"
-        trackTypeWork="segment"
+        fromEducation={0}
         textContent={
           <>
             <h2>M.Sc. Computational Visualistics</h2>
@@ -67,9 +75,10 @@ const Timeline: React.FC = function () {
         }
       />
       <TimelineEntry
+        time={0.3}
         type="work"
-        trackTypeEducation="segment"
-        trackTypeWork="start"
+        fromEducation={1}
+        fromWork={1}
         textContent={
           <>
             <h2>HASOMED GmbH</h2>
@@ -78,9 +87,10 @@ const Timeline: React.FC = function () {
         }
       />
       <TimelineEntry
+        time={0}
         type="education"
-        trackTypeEducation="start"
-        trackTypeWork="start"
+        fromEducation={1}
+        fromWork={1}
         textContent={
           <>
             <h2>B.Sc. Computational Visualistics</h2>
