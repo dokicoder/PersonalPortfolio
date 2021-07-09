@@ -1,17 +1,50 @@
 import React from 'react';
 import styles from './timeline.module.scss';
+import { Collapsible } from './../collapsible/collapsible';
 
 interface IEntryProps {
-  time: number;
-  fromEducation?: number;
-  fromWork?: number;
+  date: Date;
+  fromEducationDate?: Date;
+  fromWorkDate?: Date;
   type: 'education' | 'work';
   textContent: React.ReactNode;
+  displayDotEducation?: boolean;
+  displayDotWork?: boolean;
 }
 
-const TimelineEntry: React.FC<IEntryProps> = ({ time, type, fromEducation, fromWork, textContent }) => {
-  const offset = `${time * 91}%`;
-  const segmentHeight = delta => `${delta * 91}%`;
+const startBSc = new Date('2008-10-01');
+const finishBSc = new Date('2015-02-01');
+const startHasomed = new Date('2015-02-01');
+const startMSc = new Date('2016-10-01');
+const finishMSc = new Date('2019-01-01');
+const startTi8m = new Date('2019-06-01');
+
+const earliestDate = new Date('2012-01-01');
+// today
+const latestDate = new Date();
+
+const earliestMillis = earliestDate.getTime();
+const latestMillis = latestDate.getTime();
+
+const dateToTimePos = (date: Date) => {
+  return (date.getTime() - earliestMillis) / (latestMillis - earliestMillis);
+};
+
+const TimelineEntry: React.FC<IEntryProps> = ({
+  date,
+  type,
+  fromEducationDate = date,
+  fromWorkDate = date,
+  textContent,
+  displayDotEducation = true,
+  displayDotWork = true,
+}) => {
+  const time = dateToTimePos(date);
+  const fromEducation = dateToTimePos(fromEducationDate);
+  const fromWork = dateToTimePos(fromWorkDate);
+
+  const offset = `calc(${time * 100}% - 3.7rem)`;
+  const segmentHeight = delta => `${delta * 100}%`;
 
   return (
     <>
@@ -22,14 +55,21 @@ const TimelineEntry: React.FC<IEntryProps> = ({ time, type, fromEducation, fromW
       ) : (
         <div />
       )}
-      <div
-        style={{ bottom: offset, height: fromEducation != undefined ? segmentHeight(time - fromEducation) : undefined }}
-        className={styles.trackSegment_education}
-      />
-      <div
-        style={{ bottom: offset, height: fromWork != undefined ? segmentHeight(time - fromWork) : undefined }}
-        className={styles.trackSegment_work}
-      />
+      {displayDotEducation && (
+        <div
+          style={{
+            bottom: offset,
+            height: fromEducation != undefined ? segmentHeight(time - fromEducation) : undefined,
+          }}
+          className={styles.trackSegment_education}
+        />
+      )}
+      {displayDotWork && (
+        <div
+          style={{ bottom: offset, height: fromWork != undefined ? segmentHeight(time - fromWork) : undefined }}
+          className={styles.trackSegment_work}
+        />
+      )}
       {type === 'work' ? (
         <div style={{ bottom: offset }} className={styles.text_work}>
           {textContent}
@@ -53,71 +93,68 @@ const Timeline: React.FC = function () {
         <span>💼</span>
       </div>
       <TimelineEntry
-        time={1.0}
+        date={latestDate}
         type="work"
-        fromWork={0.3}
+        fromWorkDate={startTi8m}
+        displayDotEducation={false}
+        textContent={
+          <>
+            <h2>today</h2>
+          </>
+        }
+      />
+      <TimelineEntry
+        date={startTi8m}
+        type="work"
+        fromWorkDate={startHasomed}
+        displayDotEducation={false}
         textContent={
           <>
             <h2>ti&m AG</h2>
             <div>Software Developer</div>
+            <Collapsible
+              content={<div className={styles.infoContent}>Hello there, general Kenobi. Wanna shop at Obi?</div>}
+            />
           </>
         }
       />
       <TimelineEntry
-        time={0.5}
+        date={finishMSc}
         type="education"
-        fromEducation={0}
+        fromEducationDate={startMSc}
+        displayDotWork={false}
         textContent={
           <>
             <h2>M.Sc. Computational Visualistics</h2>
-            <div>OvGU University Magdeburg</div>
+            <div>OvGU Magdeburg</div>
+            <Collapsible content={<div className={styles.infoContent}>Hello </div>} align="right" />
           </>
         }
       />
       <TimelineEntry
-        time={0.3}
+        date={startHasomed}
         type="work"
-        fromEducation={1}
-        fromWork={1}
+        displayDotEducation={false}
         textContent={
           <>
             <h2>HASOMED GmbH</h2>
             <div>Software Developer</div>
+            <Collapsible content={<div className={styles.infoContent}>Hello </div>} />
           </>
         }
       />
       <TimelineEntry
-        time={0}
+        date={finishBSc}
         type="education"
-        fromEducation={1}
-        fromWork={1}
+        fromEducationDate={earliestDate}
         textContent={
           <>
             <h2>B.Sc. Computational Visualistics</h2>
-            <div>OvGU University Magdeburg</div>
+            <div>OvGU Magdeburg</div>
+            <Collapsible content={<div className={styles.infoContent}>Hello </div>} align="right" />
           </>
         }
       />
-      {/*
-        <div className={styles.trackStart_education} />
-        <div className={styles.trackStart_work} />
-        <div className={styles.text_education}>
-            <h2>M.Sc. Computational Visualistics</h2>
-            <div>OvGU University Magdeburg</div>
-        </div>
-        <div className={styles.trackSegment_education} />
-        <div className={styles.trackEnd_work} />
-
-        <div className={styles.text_work}>
-            <h2>HASOMED GmbH</h2>
-            <div>Software Developer</div>
-        </div>
-        <div className={styles.trackEnd_education} />
-
-        <div className={styles.text_education}>
-        
-        </div>
-      */}
     </div>
   );
 };

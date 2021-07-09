@@ -1,5 +1,7 @@
+$text-color: rgb(29, 39, 53);
+
 .cvContainer {
-    --cv-margin: 2.5rem;
+    --cv-margin: 2.2rem;
     border-radius: 0.6rem;
 
     display: flex;
@@ -24,6 +26,20 @@
     }
 }
 
+@media (max-width: 920px) {
+    .cvContainer {
+        flex-direction: column;
+    }
+
+    .cvInfoBar { 
+        max-width: 30rem;
+        width: initial;
+        border-right: none;
+        align-self: center;
+        padding-right: 0;
+    }
+}
+
 .cvContentContainer {
     padding: var(--cv-margin);
     padding-left: 0;
@@ -35,7 +51,8 @@
 }
 
 .divider {
-    box-shadow: 0 0.8rem 1rem -0.8rem #00005060;
+    //box-shadow: 0 0.8rem 1rem -0.8rem #00005060;
+    border-bottom: 1.0px dashed #00005030;;
     padding-left: 0.7rem;
     margin: 2rem  -0.7rem 2rem -0.7rem;
 }
@@ -43,7 +60,7 @@
 .icon {
     width: 2.2rem;
     height: 2.2rem;
-    background-color: var(--text-color);
+    background-color: $text-color;
     border-radius: 50%;
     display: flex;
     justify-content: space-around;
@@ -67,37 +84,11 @@
     justify-content: space-between;
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;
+    text-align: right;
 }
 
-.languageSkillsGerman {
+.languageSkills {
     display: flex;
-    flex-direction: row;
     align-items: center;
-}
-
-.languageSkillsGerman > svg {
-    height: 1.8rem;
-}
-
-.languageSkillsGerman > svg:last-child {
-    margin-left: 0.28rem;
-}
-
-.languageSkillsEnglish {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 0.8rem;
-}
-
-.languageSkillsEnglish > svg {
-    height: 1.8rem;
-}
-
-.languageSkillsEnglish > svg:first-child {
-    transform: scaleX(0.9);
-}
-
-.languageSkillsEnglish > svg:last-child {
-    transform: scaleX(0.8);
+    gap: 1rem;
 }

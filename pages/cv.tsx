@@ -8,10 +8,8 @@ import styles from './cv.module.scss';
 import Phone from '../public/icons/call.svg';
 import Mail from '../public/icons/mail.svg';
 import Home from '../public/icons/location.svg';
-import CHflag from '../public/icons/ch.svg';
-import DEflag from '../public/icons/de.svg';
-import UKflag from '../public/icons/gb.svg';
-import USflag from '../public/icons/us.svg';
+import DEflag from '../public/icons/de_round.svg';
+import UKflag from '../public/icons/en_round.svg';
 import Timeline from './../components/cv/timeline';
 
 // pages/404.js
@@ -48,14 +46,16 @@ const CurriculumVitae: React.FC = function () {
           </address>
           <h3 className={styles.divider}>Skills</h3>
           <h4>Languages</h4>
-          <div className={styles.languageSkillsGerman}>
-            <DEflag width={35} /> <CHflag width={23} />
+          <div className={styles.languageSkills}>
+            <DEflag width={35} />
+            <span>fluent (native speaker)</span>
           </div>
-          fluent (native speaker)
-          <div className={styles.languageSkillsEnglish}>
-            <USflag width={35} /> <UKflag width={38} />
+
+          <div className={styles.languageSkills}>
+            <UKflag width={35} />
+            <span>fluent</span>
           </div>
-          fluent
+
           <h4 className={styles.divider}>It / Software</h4>
         </div>
         <div className={styles.cvContentContainer}>

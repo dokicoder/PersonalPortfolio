@@ -2,7 +2,7 @@ $track-line-thickness: 0.2rem;
 $trackIcon-size: 2.7rem;
 $text-color: rgb(29, 39, 53);
 $track-color: rgba($text-color, 0.7);
-$track-width: max(8%,  #{$trackIcon-size});
+$track-width: max(6%,  #{$trackIcon-size});
 
 $trackColor_education: hsl(42, 100%, 65%);
 $trackColor_work: hsl(120, 46%, 27%);
@@ -24,7 +24,8 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
   row-gap: $row-gap;
   column-gap: $col-gap;
 
-  height: 40rem;
+  height: 50rem;
+  overflow: hidden;
 
   line-height: 1.4;
 
@@ -33,11 +34,13 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
     margin-bottom: 0.0rem;
   }
 
-  //background-color: rgba(blue, 0.1);
   align-self: stretch;
 }
 
 .text_education {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   position: absolute;
   bottom: 0;
   transform: translateY(50%);
@@ -151,4 +154,10 @@ $trackOffset_work: calc(50% + 0.5 * #{$track-width} + 0.5 * #{$col-gap});
   &:after {
     background-color: $trackColor_work;
   }
+}
+
+.infoContent {
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 200, 0.1);
 }

@@ -1,0 +1,51 @@
+.collapsible {
+  position: relative;
+  
+  > span {
+    position: absolute;
+    top: -1.8rem;
+    right: calc(100% - 12rem);
+    font-size: 2rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    transition: 0.3s ease-in-out transform;
+    transform-origin: 50% 65% 0;
+    text-align: center;
+    line-height: 100%;
+    cursor: pointer;
+  
+    transform: rotate(360deg);
+  }
+
+  .collapsibleContent {
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    max-height: 0;
+    transition: 0.3s ease-in-out max-height;
+    overflow: hidden;
+  
+    margin-top: 0.3rem;
+  }
+}
+
+
+.expanded {
+  span {
+    transform: rotate(180deg);
+  }
+
+  .collapsibleContent {
+    max-height: 12rem;
+  }
+}
+
+.right {
+  > span {
+    left: calc(100% - 12rem);
+  }
+
+  .collapsibleContent {
+    right: 0;
+  }
+}
