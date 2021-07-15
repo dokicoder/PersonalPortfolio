@@ -15,7 +15,7 @@ const Home: React.FC<any> = function ({ allPostsData }) {
         <p>TODO: self intro</p>
       </section>
       <section>
-        <Link href={`/cv`}>
+        <Link href="/cv">
           <a>CV</a>
         </Link>
       </section>

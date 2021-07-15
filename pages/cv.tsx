@@ -11,6 +11,7 @@ import Home from '../public/icons/location.svg';
 import DEflag from '../public/icons/de_round.svg';
 import UKflag from '../public/icons/en_round.svg';
 import Timeline from './../components/cv/timeline';
+import { SkillsCircle } from '../components/SkillsCircle/SkillsCircle';
 
 // pages/404.js
 const CurriculumVitae: React.FC = function () {
@@ -57,6 +58,17 @@ const CurriculumVitae: React.FC = function () {
           </div>
 
           <h4 className={styles.divider}>It / Software</h4>
+          <SkillsCircle
+            segments={[
+              { color: 'red', size: 0.2 },
+              { color: 'blue', size: 0.1 },
+              { color: '#aaaaff', size: 0.05 },
+              { color: 'yellow', size: 0.15 },
+              { color: 'orange', size: 0.2 },
+              { color: 'lime', size: 0.24 },
+              { color: 'green', size: 0.06 },
+            ]}
+          />
         </div>
         <div className={styles.cvContentContainer}>
           <Timeline />
